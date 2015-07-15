@@ -213,6 +213,32 @@ G:\C#\Project\Snake\6.23\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\Cashew Ap
 G:\C#\Project\Snake\6.23\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\Cashew Apple Ale.spritefont
 G:\C#\Project\Snake\6.23\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\Alchemist.gif
 G:\C#\Project\Snake\6.23\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\font.png
-G:\C#\Project\Snake\6.26\Snake\Snake\obj\x86\Debug\Snake.exe
-G:\C#\Project\Snake\6.26\Snake\Snake\obj\x86\Debug\Snake.pdb
-G:\C#\Project\Snake\6.26\Snake\Snake\obj\x86\Debug\Snake.csprojResolveAssemblyReference.cache
+G:\C#\Project\Snake\6.26-2\Snake\Snake\obj\x86\Debug\Snake.exe
+G:\C#\Project\Snake\6.26-2\Snake\Snake\obj\x86\Debug\Snake.pdb
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\Alchemist.gif
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\ArtosSans.png
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\font.png
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Content\Textures\screen.png
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Content\Textures\tail2.png
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Content\Textures\tile.png
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\Cashew Apple Ale.ttf
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Content\fonts\Cashew Apple Ale.spritefont
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Snake.exe
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Snake.pdb
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\BitMiracle.LibTiff.NET.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\box2d.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\cocos2d-xna.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\ICSharpCode.SharpZipLib.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\Lidgren.Network.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\MonoGame.Framework.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.Direct2D1.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.Direct3D11.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.Direct3D9.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.DXGI.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.MediaFoundation.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.RawInput.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.XAudio2.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\SharpDX.XInput.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\bin\WindowsDX\Debug\zlib.net.dll
+G:\C#\Project\Snake\6.26-2\Snake\Snake\obj\x86\Debug\Snake.csprojResolveAssemblyReference.cache

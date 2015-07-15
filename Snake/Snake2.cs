@@ -8,7 +8,6 @@ namespace Snake
 {
     class Snake2:Snake
     {
-
         public override void Update(GameTime gameTime)
         {
 
@@ -88,6 +87,12 @@ namespace Snake
             }
         }
 
-
+        enum  Direction
+        {
+            Up,
+            Down,
+            Left,
+            Right
+        };
     }
 }

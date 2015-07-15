@@ -10,11 +10,13 @@ namespace Snake
     class Snake
     {
         public static readonly int INIT_BODY_LENGTH = 5;
-        protected readonly int WIDTH = GameManager.WIDTH / GameManager.TILE_SIZE;
-        protected readonly int HEIGHT = GameManager.HEIGHT / GameManager.TILE_SIZE;
+        private readonly int WIDTH = GameManager.WIDTH / GameManager.TILE_SIZE;
+        private readonly int HEIGHT = GameManager.HEIGHT / GameManager.TILE_SIZE;
 
-        protected List<Vector2> body;
-        protected Direction direction;
+        private List<Vector2> body;
+        private Direction direction;
+
+        private InputController inputController;
 
         public Vector2 Head
         {
@@ -33,13 +35,21 @@ namespace Snake
                 return body[body.Count - 1];
             }
         }
+
+        public InputController InputController 
+        {
+            get { return inputController; }
+        }
+
         public void BodyGrow()
         {
             body.Add(Head - (Vector2.UnitX * (body.Count + 1)));
         }
 
-        public Snake()
+        public Snake(InputController inputController)
         {
+            this.inputController = inputController;
+
             // Initialize snake
             body = new List<Vector2>();
 
@@ -52,29 +62,26 @@ namespace Snake
                 body.Add(Head - (Vector2.UnitX * (i + 1)));
             }
             
-
             // Initialize moving to the right
             direction = Direction.Right;
         }
 
         public void Update(GameTime gameTime)
         {
-            
-            
             // Change snake direction
-            if (InputController.IsleftPressed && direction != Direction.Right)
+            if (inputController.IsleftPressed && direction != Direction.Right)
             {
                 direction = Direction.Left;
             }
-            else if (InputController.IsRightPressed && direction != Direction.Left)
+            else if (inputController.IsRightPressed && direction != Direction.Left)
             {
                 direction = Direction.Right;
             }
-            else if (InputController.IsDownPressed && direction != Direction.Up)
+            else if (inputController.IsDownPressed && direction != Direction.Up)
             {
                 direction = Direction.Down;
             }
-            else if (InputController.IsUpPressed && direction != Direction.Down)
+            else if (inputController.IsUpPressed && direction != Direction.Down)
             {
                 direction = Direction.Up;
             }
@@ -99,17 +106,12 @@ namespace Snake
                     break;
             }
 
-
-            
             // detect if the snake reach to the border 
             if (Head.X == WIDTH)
             {
                 Vector2 temp;
                 temp = new Vector2(0, Head.Y);
                 body[0] = temp;
-
-
-
             }
             else if (Head.Y == HEIGHT)
             {
@@ -136,7 +138,7 @@ namespace Snake
             }
         }
 
-        protected void Move(Vector2 amount)
+        private void Move(Vector2 amount)
         {
             // Move body
             for (int i = body.Count - 1; i > 0; i--)
@@ -189,7 +191,7 @@ namespace Snake
         }
     }
 
-    protected enum Direction 
+    enum Direction 
     {
         Up, 
         Down, 

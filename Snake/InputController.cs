@@ -6,14 +6,19 @@ using System.Text;
 
 namespace Snake
 {
-    public static class InputController
+    public class InputController
     {
-        private static bool isLeftPressed;
-        private static bool isRightPressed;
-        private static bool isUpPressed;
-        private static bool isDownPressed;
+        private bool isLeftPressed;
+        private bool isRightPressed;
+        private bool isUpPressed;
+        private bool isDownPressed;
 
-        public static bool IsleftPressed
+        private Keys keyLeft;
+        private Keys keyRight;
+        private Keys keyUp;
+        private Keys keyDown;
+
+        public bool IsleftPressed
         {
             get
             {
@@ -21,7 +26,7 @@ namespace Snake
             }
         }
 
-        public static bool IsRightPressed
+        public bool IsRightPressed
         {
             get
             {
@@ -29,7 +34,7 @@ namespace Snake
             }
         }
 
-        public static bool IsUpPressed
+        public bool IsUpPressed
         {
             get
             {
@@ -37,7 +42,7 @@ namespace Snake
             }
         }
 
-        public static bool IsDownPressed
+        public bool IsDownPressed
         {
             get
             {
@@ -45,31 +50,39 @@ namespace Snake
             }
         }
 
-        public static void Update()
+        public InputController(Keys keyLeft, Keys keyRight, Keys keyUp, Keys keyDown)
+        {
+            this.keyLeft = keyLeft;
+            this.keyRight = keyRight;
+            this.keyUp = keyUp;
+            this.keyDown = keyDown;
+        }
+
+        public void Update()
         {
             // Get keyboard state
             KeyboardState keyState = Keyboard.GetState();
 
             // Update directions pressed
-            if (keyState.IsKeyDown(Keys.A))
+            if (keyState.IsKeyDown(keyLeft))
             {
                 isLeftPressed = true;
             }
-            if (keyState.IsKeyDown(Keys.D))
+            if (keyState.IsKeyDown(keyRight))
             {
                 isRightPressed = true;
             }
-            if (keyState.IsKeyDown(Keys.W))
+            if (keyState.IsKeyDown(keyUp))
             {
                 isUpPressed = true;
             }
-            if (keyState.IsKeyDown(Keys.S))
+            if (keyState.IsKeyDown(keyDown))
             {
                 isDownPressed = true;
             }
         }
 
-        public static void Clear()
+        public void Clear()
         {
             // Clear all directions pressed
             isLeftPressed = false;

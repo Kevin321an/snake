@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,14 @@ namespace Snake
 
         private Food food;
         private Snake snake;
+        private InputController inputControllerP1,inputControllerP2;
         private int timeCount;
         private int score;
 
         public void Initialize()
         {
-            snake = new Snake();
+            inputControllerP1 = new InputController(Keys.A, Keys.D, Keys.W, Keys.S);
+            snake = new Snake(inputControllerP1);
             food = new Food();
             timeCount = 0;
         }
@@ -32,7 +35,7 @@ namespace Snake
             timeCount += gameTime.ElapsedGameTime.Milliseconds;
             
             // Update input controller
-            InputController.Update();
+            snake.InputController.Update();
             
             // Check if time passed is greater than the interval
             if(timeCount > INTERVAL)
@@ -63,16 +66,8 @@ namespace Snake
 
                 }  
                
-                
-                    
-                
-                
-                
-                    
-
-
                 // Clear input controller
-                InputController.Clear();
+                snake.InputController.Clear();
 
                 // Clear counter
                 timeCount = 0;
