@@ -16,15 +16,18 @@ namespace Snake
         private static readonly int INTERVAL = 500;
 
         private Food food;
-        private Snake snake;
+        private Snake snake,sanke2;
         private InputController inputControllerP1,inputControllerP2;
         private int timeCount;
         private int score;
+        int NUMBER_OF_SNAKE = 0;
 
         public void Initialize()
         {
             inputControllerP1 = new InputController(Keys.A, Keys.D, Keys.W, Keys.S);
+            inputControllerP2 = new InputController(Keys.Left, Keys.Right, Keys.Up, Keys.Down);
             snake = new Snake(inputControllerP1);
+
             food = new Food();
             timeCount = 0;
         }
@@ -36,6 +39,21 @@ namespace Snake
             
             // Update input controller
             snake.InputController.Update();
+
+
+            if (sanke2 != null )
+            {
+                // Update sanke
+                sanke2.InputController.Update();
+            }
+
+
+            //add second snake when press insert            
+            if (InputController.IsInsertPressed && NUMBER_OF_SNAKE == 0)
+            {
+                NUMBER_OF_SNAKE++;
+                sanke2 = new Snake(inputControllerP2);
+            }
             
             // Check if time passed is greater than the interval
             if(timeCount > INTERVAL)
@@ -46,7 +64,13 @@ namespace Snake
                 {
                     // Update snake
                     snake.Update(gameTime);
-                }                
+                }
+                
+                if(sanke2 != null && !snake.BodyCollision())
+                {
+                    // Update sanke
+                    sanke2.Update(gameTime);
+                }
                              
                 
 
@@ -61,17 +85,40 @@ namespace Snake
                         //food = null;
 
                         food = new Food();
-                    } while (snake.Collision(food.Position.X, food.Position.Y, snake.Head));                                       
+                    } while (snake.Collision(food.Position.X, food.Position.Y, snake.Head));                                    
                                       
 
-                }  
+                }
+                if (sanke2 != null)
+                {
+                    bool flag2 = sanke2.Collision(food.Position.X, food.Position.Y, snake.Head);
+                    if (flag2)
+                    {
+                        snake.BodyGrow();
+                        score += 1;
+                        do
+                        {
+                            //food = null;
+
+                            food = new Food();
+                        } while (sanke2.Collision(food.Position.X, food.Position.Y, snake.Head));
+
+
+                    }
+
+                }
                
                 // Clear input controller
                 snake.InputController.Clear();
+                if (sanke2 != null)
+                {
+                    sanke2.InputController.Clear();
+                }
 
                 // Clear counter
                 timeCount = 0;
             }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -87,6 +134,11 @@ namespace Snake
             
             // Draw snake
             snake.Draw(spriteBatch);
+            if (sanke2 != null)
+            {
+                sanke2.Draw(spriteBatch);
+            }
+            
         }
     }
 }
