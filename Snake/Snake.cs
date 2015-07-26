@@ -12,11 +12,14 @@ namespace Snake
         public static readonly int INIT_BODY_LENGTH = 5;
         private readonly int WIDTH = GameManager.WIDTH / GameManager.TILE_SIZE;
         private readonly int HEIGHT = GameManager.HEIGHT / GameManager.TILE_SIZE;
+        
+        
 
         private List<Vector2> body;
         private Direction direction;
 
         private InputController inputController;
+        private Texture2D resources;
 
         public Vector2 Head
         {
@@ -40,15 +43,17 @@ namespace Snake
         {
             get { return inputController; }
         }
+        
 
         public void BodyGrow()
         {
             body.Add(Head - (Vector2.UnitX * (body.Count + 1)));
         }
 
-        public Snake(InputController inputController)
+        public Snake(InputController inputController, Texture2D resources)
         {
             this.inputController = inputController;
+            this.resources = resources;
 
             // Initialize snake
             body = new List<Vector2>();
@@ -161,8 +166,21 @@ namespace Snake
             else
             {
                 return false;
-            }
+            }            
+        }
 
+        public bool headCollisionFlag {
+            get;set;
+        }
+        //check if head crash the body of another snake
+        public bool headNoCollision(Snake snake)
+        {
+            for(int i=1; i < snake.body.Count; i++)
+            {
+                if (this.Head.X == snake.body[i].X&& this.Head.Y == snake.body[i].Y) { headCollisionFlag = true; return false; }
+
+            }
+            return true;           
             
         }
 
@@ -181,12 +199,14 @@ namespace Snake
 
         }
 
+        
+
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw snake
             for (int i = 0; i < body.Count; i++)
             {
-                spriteBatch.Draw(Resources.tail2, body[i] * GameManager.TILE_SIZE, Color.White);
+                spriteBatch.Draw(resources, body[i] * GameManager.TILE_SIZE, Color.White);
             }
         }
     }

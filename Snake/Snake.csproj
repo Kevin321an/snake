@@ -110,6 +110,9 @@
     <Content Include="Content\fonts\font.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\palyer2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\screen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
