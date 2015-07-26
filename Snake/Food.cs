@@ -9,8 +9,8 @@ namespace Snake
 {
     class Food
     {
+        static Random generator = new Random();
         public Vector2 position;
-
         public Vector2 Position
         {
             get
@@ -21,20 +21,13 @@ namespace Snake
 
         public Food()
         {
-            Random generator = new Random();
-            
+                       
             float x = generator.Next(GameManager.WIDTH / GameManager.TILE_SIZE);
-            float y = generator.Next(GameManager.HEIGHT / GameManager.TILE_SIZE);
-
-           
-            
-            
-            
-            
+            float y = generator.Next(GameManager.HEIGHT / GameManager.TILE_SIZE);      
             position = new Vector2(x, y);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Resources.tile, position * GameManager.TILE_SIZE, Color.White);
         }

@@ -38,6 +38,14 @@ namespace Snake
                 return body[body.Count - 1];
             }
         }
+        public Vector2 SecondTail
+        {
+            get
+            {
+                // Return last position of body
+                return body[body.Count - 2];
+            }
+        }
 
         public InputController InputController 
         {
@@ -47,7 +55,11 @@ namespace Snake
 
         public void BodyGrow()
         {
-            body.Add(Head - (Vector2.UnitX * (body.Count + 1)));
+            //body.Add(Head - (Vector2.UnitX * (body.Count)));
+            if (Tail.X < SecondTail.X){body.Add(Tail - Vector2.UnitX);}
+            else if (Tail.X > SecondTail.X) { body.Add(Tail + Vector2.UnitX); }
+            else if (Tail.Y < SecondTail.Y) { body.Add(Tail - Vector2.UnitY); }
+            else { body.Add(Tail + Vector2.UnitY); }       
         }
 
         public Snake(InputController inputController, Texture2D resources)

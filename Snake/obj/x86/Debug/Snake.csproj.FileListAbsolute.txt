@@ -301,3 +301,5 @@ C:\Users\FM\Desktop\C#\Project\ProjectSnake\Snake\bin\WindowsDX\Debug\SharpDX.XI
 C:\Users\FM\Desktop\C#\Project\ProjectSnake\Snake\bin\WindowsDX\Debug\zlib.net.dll
 C:\Users\FM\Desktop\C#\Project\ProjectSnake\Snake\obj\x86\Debug\Snake.csprojResolveAssemblyReference.cache
 C:\Users\FM\Desktop\C#\Project\ProjectSnake\Snake\bin\WindowsDX\Debug\Content\Textures\palyer2.png
+C:\Users\FM\Desktop\C#\Project\ProjectSnake\Snake\bin\WindowsDX\Debug\Content\Textures\specialfood.png
+C:\Users\FM\Desktop\C#\Project\ProjectSnake\Snake\bin\WindowsDX\Debug\Content\Textures\CourierNew.spritefont

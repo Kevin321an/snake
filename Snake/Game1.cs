@@ -26,11 +26,14 @@ namespace Snake
 
             gameManager = new GameManager();
         }
+       
 
         protected override void LoadContent()
         {
+            
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             
             // Load resources
             Resources.Load(Content);
@@ -43,6 +46,12 @@ namespace Snake
         {
             gameManager.Update(gameTime);
             base.Update(gameTime);
+            //reset the game
+            if (InputController.IsReset)
+            {
+                Game1 game = new Game1();
+            }
+
         }
 
         protected override void Draw(GameTime gameTime)

@@ -13,12 +13,14 @@ namespace Snake
         private bool isUpPressed;
         private bool isDownPressed;
         private static bool isInsert;
+        private static bool isReset;
 
         private Keys keyLeft;
         private Keys keyRight;
         private Keys keyUp;
         private Keys keyDown;
         private Keys insert;
+        private Keys reset;
 
         public bool IsleftPressed
         {
@@ -59,6 +61,14 @@ namespace Snake
                 return isInsert;
             }
         }
+        public static bool IsReset
+        {
+            get
+            {
+                return isReset;
+            }
+        }
+
         public InputController(Keys keyLeft, Keys keyRight, Keys keyUp, Keys keyDown)
         {
             this.keyLeft = keyLeft;
@@ -66,6 +76,7 @@ namespace Snake
             this.keyUp = keyUp;
             this.keyDown = keyDown;
             this.insert = Keys.Insert;
+            this.reset = Keys.F5;
         }
 
         public void Update()
@@ -94,6 +105,10 @@ namespace Snake
             {
                 isInsert = true;
             }
+            if (keyState.IsKeyDown(reset))
+            {
+                isReset = true;
+            }
         }
 
         public void Clear()
@@ -103,6 +118,8 @@ namespace Snake
             isRightPressed = false;
             isUpPressed = false;
             isDownPressed = false;
+            isReset = false;
+            
             //isInsert = false;
         }
     }
