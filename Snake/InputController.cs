@@ -12,8 +12,9 @@ namespace Snake
         private bool isRightPressed;
         private bool isUpPressed;
         private bool isDownPressed;
-        private static bool isInsert;
-        private static bool isReset;
+        private static bool isInsert; //The second player join the game
+        private static bool isReset; // reset the game
+        private static bool isIncrease; //increase the game speed
 
         private Keys keyLeft;
         private Keys keyRight;
@@ -21,6 +22,7 @@ namespace Snake
         private Keys keyDown;
         private Keys insert;
         private Keys reset;
+        private Keys increase;
 
         public bool IsleftPressed
         {
@@ -68,6 +70,10 @@ namespace Snake
                 return isReset;
             }
         }
+        public static bool IsIncrease
+        {
+            get { return isIncrease; }
+        }
 
         public InputController(Keys keyLeft, Keys keyRight, Keys keyUp, Keys keyDown)
         {
@@ -77,8 +83,10 @@ namespace Snake
             this.keyDown = keyDown;
             this.insert = Keys.Insert;
             this.reset = Keys.F5;
+            this.increase = Keys.PageUp;
         }
 
+        //keep updating the key status
         public void Update()
         {
             // Get keyboard state
@@ -109,8 +117,12 @@ namespace Snake
             {
                 isReset = true;
             }
+            if (keyState.IsKeyDown(increase))
+            {
+                isReset = true;
+            }
         }
-
+        //release the key status 
         public void Clear()
         {
             // Clear all directions pressed
@@ -119,8 +131,9 @@ namespace Snake
             isUpPressed = false;
             isDownPressed = false;
             isReset = false;
+            isIncrease = false;
             
-            //isInsert = false;
+            isInsert = false;
         }
     }
 }

@@ -10,15 +10,36 @@ namespace Snake
 {
     class GameManager
     {
-        //public static readonly int HEIGHT = 480;
-        //public static readonly int WIDTH = 640;
-        //1280*736/1600*896
-        public static readonly int HEIGHT = 896;
-        public static readonly int WIDTH = 1600;
-        public static readonly int TILE_SIZE = 32;
-        //private static readonly int INTERVAL = 500;
-        private static readonly int INTERVAL = 300;
-        private static readonly int SEPCIAL_FOOD_INTERVAR = 2;
+        
+        //Alternative Resolution: 1280*736 or 1600*896
+        private static readonly int HEIGHT = 896;
+        static public int Height
+        {
+            get
+            {
+                return HEIGHT;
+            }
+        }
+        private static readonly int WIDTH = 1600;
+        static public int Width
+        {
+            get
+            {
+                return WIDTH;
+            }
+        }
+        private static readonly int TILE_SIZE = 32;
+        static public int Tile_Size
+        {
+            get
+            {
+                return TILE_SIZE;
+            }
+        }
+        //Game Speed
+        private static  int INTERVAL = 300;
+        //Special food will apear after how many normal food
+        private static readonly int SEPCIAL_FOOD_INTERVAR = 5;
         private int foodCount;
         private Food food;
         private SpecialFood specialFood;
@@ -26,21 +47,22 @@ namespace Snake
         private InputController inputControllerP1,inputControllerP2;
         private int timeCount;
         private int score;
-        int NUMBER_OF_SNAKE = 0;
+        //Snake number counter
+        private int numberOfSnake = 0;
         private bool hasSnake2;
         private GameTime gameTime;
 
+        //initial the game
         public void Initialize()
         {
             inputControllerP1 = new InputController(Keys.A, Keys.D, Keys.W, Keys.S);
             inputControllerP2 = new InputController(Keys.Left, Keys.Right, Keys.Up, Keys.Down);
-            snake = new Snake(inputControllerP1,Resources.tail2);
-            
+            snake = new Snake(inputControllerP1,Resources.tail2);            
             food = new Food();
             foodCount = 0;
             timeCount = 0;
         }
-
+        //main segment when game is running 
         public void Update(GameTime gameTime)
         {
             this.gameTime = gameTime;
@@ -66,18 +88,33 @@ namespace Snake
             //reset the game
             if (InputController.IsReset)
             {
-                Initialize();
+                snake.InputController.Clear();
+                Initialize();                
+                if (hasSnake2)
+                {
+                    snake2.InputController.Clear();
+                    snake2 = null;
+                    hasSnake2 = false;
+                    numberOfSnake = 0;
+                }
             }
-            //add second snake when press insert            
-            if (InputController.IsInsertPressed && NUMBER_OF_SNAKE == 0)
+
+            //add second snake when press insert key           
+            if (InputController.IsInsertPressed && numberOfSnake == 0)
             {
-                NUMBER_OF_SNAKE++;
+                numberOfSnake++;
                 snake2 = new Snake(inputControllerP2, Resources.player2);
                 hasSnake2 = true;
             }
-            
+
+            //increse speed
+            if (InputController.IsIncrease)
+            {
+                INTERVAL+=100;                
+            }
+
             // Check if time passed is greater than the interval
-            if(timeCount > INTERVAL)
+            if (timeCount > INTERVAL)
             {                
                 //check collision of snake                
                     if (hasSnake2)
@@ -96,6 +133,7 @@ namespace Snake
                 {
                     updateSnake(snake2, snake);
                 }
+
                 // Check collision snake food
                 foodCollision(snake);
                 SpecialfoodCollision(snake);
@@ -115,11 +153,10 @@ namespace Snake
                 // Clear counter
                 timeCount = 0;
             }
-
         }
-        //snake eat food and generate a new one
+        //when snake eat food and generate a new one
         public void foodCollision(Snake snake)
-        {
+        {            
             bool flag = snake.Collision(food.Position.X, food.Position.Y, snake.Head);
             if (flag)
             {
@@ -128,8 +165,7 @@ namespace Snake
                 
                 foodCount++;
                 do
-                {
-                    //food = null;
+                {                   
                     food = new Food();
                     
                 } while (snake.Collision(food.Position.X, food.Position.Y, snake.Head));
@@ -151,33 +187,28 @@ namespace Snake
         //update the snake motion while it alive
         public void updateSnake(Snake thisSnake, Snake anotherSnake)
         {
-            //check if the sanke crash the boby of itsself
-            //then check if the sanke has even crashed 
+            //check if the sanke crash the body of itsself
+            //then check if the sanke has ever been crashed 
             //last, check if the snake is crashing with another snake's body 
             if (!thisSnake.BodyCollision() &&
-                   !thisSnake.headCollisionFlag && thisSnake.headNoCollision(anotherSnake))
+                   !thisSnake.headCollisionFlag && 
+                   thisSnake.headNoCollision(anotherSnake))
             {
                 // Update sanke
                 thisSnake.Update(gameTime);
             }
         }
 
+        //shot GUI on the board
         public void Draw(SpriteBatch spriteBatch)
-        {
-            // Draw background
-            //spriteBatch.Draw(Resources.screen, Vector2.Zero, Color.White);
-            
+        {    
             // Draw food
             food.Draw(spriteBatch);
             if (specialFood != null)
             {
                 specialFood.Draw(spriteBatch);
             }
-            
-
-            //spriteBatch.DrawString(Resources.font, "Score", new Vector2(WIDTH / 2f, HEIGHT / 2f), Color.White);
-            //spriteBatch.Draw(Resources.font, Vector2.Zero, new Rectangle(60 * 0, 70 * 0, 70, 60), Color.White);
-
+       
             // Draw snake
             snake.Draw(spriteBatch);
             if (hasSnake2)

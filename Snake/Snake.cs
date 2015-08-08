@@ -9,11 +9,10 @@ namespace Snake
 {
     class Snake
     {
-        public static readonly int INIT_BODY_LENGTH = 5;
-        private readonly int WIDTH = GameManager.WIDTH / GameManager.TILE_SIZE;
-        private readonly int HEIGHT = GameManager.HEIGHT / GameManager.TILE_SIZE;
-        
-        
+        //Begining length of snake
+        private static readonly int INIT_BODY_LENGTH = 5;
+        private readonly int WIDTH = GameManager.Width / GameManager.Tile_Size;
+        private readonly int HEIGHT = GameManager.Height / GameManager.Tile_Size;              
 
         private List<Vector2> body;
         private Direction direction;
@@ -52,7 +51,7 @@ namespace Snake
             get { return inputController; }
         }
         
-
+        //body grow when the nake has a food
         public void BodyGrow()
         {
             //body.Add(Head - (Vector2.UnitX * (body.Count)));
@@ -62,6 +61,11 @@ namespace Snake
             else { body.Add(Tail + Vector2.UnitY); }       
         }
 
+        /// <summary>
+        /// Snake movment anamation
+        /// </summary>
+        /// <param name="inputController">give a set of keys to controller</param>
+        /// <param name="resources">which texture is to draw</param>
         public Snake(InputController inputController, Texture2D resources)
         {
             this.inputController = inputController;
@@ -83,6 +87,7 @@ namespace Snake
             direction = Direction.Right;
         }
 
+        //allow sanke to keep moving in last direction
         public void Update(GameTime gameTime)
         {
             // Change snake direction
@@ -151,7 +156,6 @@ namespace Snake
 
                 temp = new Vector2(Head.X, HEIGHT - 1);
                 body[0] = temp;
-
             }
         }
 
@@ -168,7 +172,14 @@ namespace Snake
         }
 
 
-        // if the snake touch the food
+
+        /// <summary>
+        /// if the snake touch the food
+        /// </summary>
+        /// <param name="x">x coordinate</param>
+        /// <param name="y">y coordinate</param>
+        /// <param name="element">one part of the body</param>
+        /// <returns></returns>
         public bool Collision(float x, float y,Vector2 element)
         {
             if (element.X == x && element.Y == y)
@@ -184,12 +195,19 @@ namespace Snake
         public bool headCollisionFlag {
             get;set;
         }
-        //check if head crash the body of another snake
+        
+        /// <summary>
+        ///check if head crash the body of another snake
+        /// </summary>
+        /// <param name="snake">the another snake</param>
+        /// <returns></returns>
         public bool headNoCollision(Snake snake)
         {
-            for(int i=1; i < snake.body.Count; i++)
+            for (int i = 1; i < snake.body.Count; i++)
             {
-                if (this.Head.X == snake.body[i].X&& this.Head.Y == snake.body[i].Y) { headCollisionFlag = true; return false; }
+                if ((this.Head.X == snake.body[i].X || this.Head.X == snake.Head.X) &&
+                    (this.Head.Y == snake.body[i].Y|| this.Head.Y == snake.Head.Y))
+                { headCollisionFlag = true; return false; }
 
             }
             return true;           
@@ -204,21 +222,17 @@ namespace Snake
                 if (Collision(Head.X, Head.Y, body[i]))
                 {
                     return true;
-
                 }
             }
             return false;
-
-        }
-
-        
-
+        }        
+        //shot it on the screen 
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw snake
             for (int i = 0; i < body.Count; i++)
             {
-                spriteBatch.Draw(resources, body[i] * GameManager.TILE_SIZE, Color.White);
+                spriteBatch.Draw(resources, body[i] * GameManager.Tile_Size, Color.White);
             }
         }
     }

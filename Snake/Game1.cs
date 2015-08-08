@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Snake
 {
     /// <summary>
-    /// This is the main type for your game
+    /// This is the main type for the game
     /// </summary>
     public class Game1 : Game
     {
@@ -20,8 +20,8 @@ namespace Snake
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferHeight = GameManager.HEIGHT;
-            graphics.PreferredBackBufferWidth = GameManager.WIDTH;
+            graphics.PreferredBackBufferHeight = GameManager.Height;
+            graphics.PreferredBackBufferWidth = GameManager.Width;
             
 
             gameManager = new GameManager();
