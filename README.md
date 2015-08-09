@@ -9,7 +9,7 @@ Snake is the game that give new life of old Snake game from Nokia.
 How to control 
 Player 1: W,A,S,D
 Player 2: UP, Left, Down, Right
-Add second player
+Add second player: Insert
 Reset Game: F5
 ```
 
